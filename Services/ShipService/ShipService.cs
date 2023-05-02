@@ -11,25 +11,32 @@ namespace TestApiV2.Services.ShipService
             new Ship() {Id = 2, Name = "Arleigh", Class =ShipClass.Destroyer, Faction = ShipFaction.America},
         };
 
-        public List<Ship> AddShip(Ship newShip)
+        public async Task<ServiceResponse<List<Ship>>> AddShip(Ship newShip)
         {
+            var serviceResponse = new ServiceResponse<List<Ship>>();
+            serviceResponse.Data = ships;
+
             ships.Add(newShip);
 
-            return ships;
+            return serviceResponse;
         }
 
-        public List<Ship> GetAllShips()
+        public async Task<ServiceResponse<List<Ship>>> GetAllShips()
         {
-            return ships;
+            var serviceResponse = new ServiceResponse<List<Ship>>();
+            serviceResponse.Data = ships;
+
+            return serviceResponse;
         }
 
-        public Ship GetShipById(int id)
+        public async Task<ServiceResponse<Ship>> GetShipById(int id)
         {
+            var serviceResponse = new ServiceResponse<Ship>();
+
             var ship = ships.FirstOrDefault(b => b.Id == id);
+            serviceResponse.Data = ship;
 
-            if(ship != null) return ship;
-
-            throw new Exception("Character not found");
+            return serviceResponse;
         }
     }
 }

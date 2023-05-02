@@ -17,21 +17,21 @@ namespace TestApiV2.Controllers
         }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<Ship>> Get()
+        public async Task<ActionResult<ServiceResponse<List<Ship>>>> Get()
         {
-            return Ok(_shipService.GetAllShips());
+            return Ok(await _shipService.GetAllShips());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Ship> GetSingle(int id)
+        public async Task<ActionResult<ServiceResponse<Ship>>> GetSingle(int id)
         {
-            return Ok(_shipService.GetShipById(id));   
+            return Ok(await _shipService.GetShipById(id));   
         }
 
         [HttpPost]
-        public ActionResult<List<Ship>> AddShip(Ship newShip)
+        public async Task<ActionResult<ServiceResponse<List<Ship>>>> AddShip(Ship newShip)
         {
-            return Ok(_shipService.AddShip(newShip));
+            return Ok(await _shipService.AddShip(newShip));
         }
     }
 }

@@ -4,8 +4,8 @@ namespace TestApiV2.Services.ShipService
 {
     public interface IShipService
     {
-        List<Ship> GetAllShips();
-        Ship GetShipById(int id);
-        List<Ship> AddShip(Ship newShip);
+        Task<ServiceResponse<List<Ship>>> GetAllShips();
+        Task<ServiceResponse<Ship>> GetShipById(int id);
+        Task<ServiceResponse<List<Ship>>> AddShip(Ship newShip);
     }
 }
