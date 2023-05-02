@@ -9,5 +9,6 @@
         public int Armor { get; set; } = 20;
         public int Crew { get; set; } = 3;
         public ShipClass Class { get; set; } = ShipClass.Boat;
+        public ShipFaction Faction { get; set; } = ShipFaction.Germany;
     }
 }

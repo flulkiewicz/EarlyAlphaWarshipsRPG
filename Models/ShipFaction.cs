@@ -3,11 +3,11 @@
 namespace TestApiV2.Models
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum ShipClass
+    public enum ShipFaction
     {
-        Boat = 0,
-        Frigate = 1,
-        Destroyer = 2,
-        Cruiser = 3,
+        America = 0,
+        Russia = 1,
+        Germany = 2,
+        Italy = 3,
     }
 }
