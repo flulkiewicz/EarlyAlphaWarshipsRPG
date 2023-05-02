@@ -25,7 +25,11 @@ namespace TestApiV2.Services.ShipService
 
         public Ship GetShipById(int id)
         {
-            return ships.FirstOrDefault(b => b.Id == id);
+            var ship = ships.FirstOrDefault(b => b.Id == id);
+
+            if(ship != null) return ship;
+
+            throw new Exception("Character not found");
         }
     }
 }
