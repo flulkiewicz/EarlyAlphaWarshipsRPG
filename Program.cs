@@ -1,15 +1,21 @@
+global using TestApiV2.Dtos.Ship;
+global using TestApiV2.Models;
+global using AutoMapper;
+global using Microsoft.EntityFrameworkCore;
 using TestApiV2.Services.ShipService;
+using WarshipsRPGBeta.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IShipService, ShipService>();
-
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
