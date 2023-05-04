@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections;
-using TestApiV2.Dtos.Ship;
-using TestApiV2.Models;
-using TestApiV2.Services.ShipService;
+using WarshipsRPGAlpha.Dtos.Ship;
+using WarshipsRPGAlpha.Models;
+using WarshipsRPGAlpha.Services.ShipService;
 
-namespace TestApiV2.Controllers
+namespace WarshipsRPGAlpha.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

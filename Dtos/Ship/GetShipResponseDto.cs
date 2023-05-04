@@ -1,4 +1,4 @@
-﻿namespace TestApiV2.Dtos.Ship
+﻿namespace WarshipsRPGAlpha.Dtos.Ship
 {
     public class GetShipResponseDto
     {

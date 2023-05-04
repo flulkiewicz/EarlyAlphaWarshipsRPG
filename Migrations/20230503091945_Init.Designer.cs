@@ -24,7 +24,7 @@ namespace WarshipsRPGAlpha.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TestApiV2.Models.Ship", b =>
+            modelBuilder.Entity("WarshipsRPGAlpha.Models.Ship", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

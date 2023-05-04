@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TestApiV2.Models
+namespace WarshipsRPGAlpha.Models
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum ShipFaction

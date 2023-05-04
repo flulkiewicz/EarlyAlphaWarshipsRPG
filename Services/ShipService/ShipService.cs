@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using System.Runtime.CompilerServices;
-using TestApiV2.Dtos.Ship;
-using TestApiV2.Models;
+using WarshipsRPGAlpha.Dtos.Ship;
+using WarshipsRPGAlpha.Models;
 using WarshipsRPGBeta.Data;
 
-namespace TestApiV2.Services.ShipService
+namespace WarshipsRPGAlpha.Services.ShipService
 {
     public class ShipService : IShipService
     {

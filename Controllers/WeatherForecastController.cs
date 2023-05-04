@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace TestApiV2.Controllers
+namespace WarshipsRPGAlpha.Controllers
 {
     [ApiController]
     [Route("[controller]")]

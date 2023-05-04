@@ -1,4 +1,6 @@
-﻿namespace WarshipsRPGBeta.Data
+﻿using WarshipsRPGAlpha.Models;
+
+namespace WarshipsRPGBeta.Data
 {
     public class DataContext : DbContext
     {
@@ -7,6 +9,7 @@
 
         }
         public DbSet<Ship> Ships { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

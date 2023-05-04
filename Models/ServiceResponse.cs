@@ -1,4 +1,4 @@
-﻿namespace TestApiV2.Models
+﻿namespace WarshipsRPGAlpha.Models
 {
     public class ServiceResponse<T>
     {

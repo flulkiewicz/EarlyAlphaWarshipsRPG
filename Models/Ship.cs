@@ -1,4 +1,6 @@
-﻿namespace TestApiV2.Models
+﻿using WarshipsRPGAlpha.Models;
+
+namespace WarshipsRPGAlpha.Models
 {
     public class Ship
     {
@@ -10,5 +12,6 @@
         public int Crew { get; set; } = 3;
         public ShipClass Class { get; set; } = ShipClass.Boat;
         public ShipFaction Faction { get; set; } = ShipFaction.Germany;
+        public User? User { get; set; }
     }
 }
