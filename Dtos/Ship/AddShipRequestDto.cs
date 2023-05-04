@@ -1,10 +1,7 @@
-﻿using WarshipsRPGAlpha.Models;
-
-namespace WarshipsRPGAlpha.Models
+﻿namespace WarshipsRPGAlpha.Dtos.Ship
 {
-    public class Ship
+    public class AddShipRequestDto
     {
-        public int Id { get; set; }
         public string Name { get; set; } = "LS3";
         public int HitPoints { get; set; } = 180;
         public int FirePower { get; set; } = 10;
@@ -12,6 +9,5 @@ namespace WarshipsRPGAlpha.Models
         public int Crew { get; set; } = 3;
         public ShipClass Class { get; set; } = ShipClass.Boat;
         public ShipFaction Faction { get; set; } = ShipFaction.Germany;
-        public User? User { get; set; }
     }
 }

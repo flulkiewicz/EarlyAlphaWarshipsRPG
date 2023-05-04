@@ -1,4 +1,4 @@
-namespace TestApiV2
+namespace WarshipsRPGAlpha
 {
     public class WeatherForecast
     {
