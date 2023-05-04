@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using WarshipsRPGAlpha.Dtos.Ship;
 using WarshipsRPGAlpha.Models;
@@ -6,6 +7,7 @@ using WarshipsRPGAlpha.Services.ShipService;
 
 namespace WarshipsRPGAlpha.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ShipController : ControllerBase
