@@ -1,4 +1,7 @@
-﻿namespace WarshipsRPGAlpha.Dtos.Ship
+﻿using WarshipsRPGAlpha.Dtos.MainGun;
+using WarshipsRPGAlpha.Dtos.SpecialWaepon;
+
+namespace WarshipsRPGAlpha.Dtos.Ship
 {
     public class GetShipResponseDto
     {
@@ -10,5 +13,7 @@
         public int Crew { get; set; } = 3;
         public ShipClass Class { get; set; } = ShipClass.Boat;
         public ShipFaction Faction { get; set; } = ShipFaction.Germany;
+        public GetMainGunDto? MainGun { get; set; }
+        public List<GetSpecialWaeponDto>? SpecialWaepons { get; set; }
     }
 }

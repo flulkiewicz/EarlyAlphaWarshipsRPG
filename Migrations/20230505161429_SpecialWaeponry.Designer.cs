@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarshipsRPGBeta.Data;
 
@@ -11,9 +12,11 @@ using WarshipsRPGBeta.Data;
 namespace WarshipsRPGAlpha.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230505161429_SpecialWaeponry")]
+    partial class SpecialWaeponry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,26 +128,6 @@ namespace WarshipsRPGAlpha.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SpecialWaepons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Damage = 250,
-                            Name = "Torpedo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Damage = 150,
-                            Name = "Rocket"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Damage = 300,
-                            Name = "Depth Charge"
-                        });
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.User", b =>

@@ -1,7 +1,3 @@
-global using WarshipsRPGAlpha.Dtos.Ship;
-global using WarshipsRPGAlpha.Models;
-global using AutoMapper;
-global using Microsoft.EntityFrameworkCore;
 using WarshipsRPGAlpha.Services.ShipService;
 using WarshipsRPGBeta.Data;
 using WarshipsRPGAlpha.Data;
@@ -10,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.OpenApi.Models;
 using System.Net;
+using WarshipsRPGAlpha.Services.MainGunService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +32,7 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddScoped<IShipService, ShipService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IMainGunService, MainGunService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -47,6 +45,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+builder.Services.AddHttpContextAccessor();
+
+
 
 var app = builder.Build();
 

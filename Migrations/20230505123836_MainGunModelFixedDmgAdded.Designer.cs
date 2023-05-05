@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarshipsRPGBeta.Data;
 
@@ -11,9 +12,11 @@ using WarshipsRPGBeta.Data;
 namespace WarshipsRPGAlpha.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230505123836_MainGunModelFixedDmgAdded")]
+    partial class MainGunModelFixedDmgAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace WarshipsRPGAlpha.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ShipSpecialWaepon", b =>
-                {
-                    b.Property<int>("ShipsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecialWaeponsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShipsId", "SpecialWaeponsId");
-
-                    b.HasIndex("SpecialWaeponsId");
-
-                    b.ToTable("ShipSpecialWaepon");
-                });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.MainGun", b =>
                 {
@@ -107,46 +95,6 @@ namespace WarshipsRPGAlpha.Migrations
                     b.ToTable("Ships");
                 });
 
-            modelBuilder.Entity("WarshipsRPGAlpha.Models.SpecialWaepon", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SpecialWaepons");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Damage = 250,
-                            Name = "Torpedo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Damage = 150,
-                            Name = "Rocket"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Damage = 300,
-                            Name = "Depth Charge"
-                        });
-                });
-
             modelBuilder.Entity("WarshipsRPGAlpha.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -170,21 +118,6 @@ namespace WarshipsRPGAlpha.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ShipSpecialWaepon", b =>
-                {
-                    b.HasOne("WarshipsRPGAlpha.Models.Ship", null)
-                        .WithMany()
-                        .HasForeignKey("ShipsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WarshipsRPGAlpha.Models.SpecialWaepon", null)
-                        .WithMany()
-                        .HasForeignKey("SpecialWaeponsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.MainGun", b =>
