@@ -14,6 +14,9 @@ namespace WarshipsRPGAlpha.Models
         public ShipFaction Faction { get; set; } = ShipFaction.Germany;
         public User? User { get; set; }
         public MainGun? MainGun { get; set; }
-        public List<SpecialWaepon>? SpecialWaepons { get; set;}
+        public List<SpecialWaepon>? SpecialWaepons { get; set; }
+        public int Fights { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
     }
 }

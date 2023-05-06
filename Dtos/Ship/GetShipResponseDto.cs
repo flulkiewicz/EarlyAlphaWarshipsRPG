@@ -15,5 +15,8 @@ namespace WarshipsRPGAlpha.Dtos.Ship
         public ShipFaction Faction { get; set; } = ShipFaction.Germany;
         public GetMainGunDto? MainGun { get; set; }
         public List<GetSpecialWaeponDto>? SpecialWaepons { get; set; }
+        public int Fights { get; set; }
+        public int Victories { get; set; }
+        public int Defeats { get; set; }
     }
 }

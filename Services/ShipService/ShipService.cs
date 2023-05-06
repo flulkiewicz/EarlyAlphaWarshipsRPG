@@ -50,6 +50,7 @@ namespace WarshipsRPGAlpha.Services.ShipService
             var serviceResponse = new ServiceResponse<List<GetShipResponseDto>>();
             var dbShips = await _context.Ships.Where(c => c.User!.Id == GetUserId())
                 .Include(c => c.MainGun)
+                .Include(c => c.SpecialWaepons)
                 .ToListAsync();
             serviceResponse.Data = dbShips.Select(s => _mapper.Map<GetShipResponseDto>(s)).ToList();
 
@@ -61,6 +62,7 @@ namespace WarshipsRPGAlpha.Services.ShipService
             var serviceResponse = new ServiceResponse<GetShipResponseDto>();
             var dbShip = await _context.Ships
                 .Include(c => c.MainGun)
+                .Include(c => c.SpecialWaepons)
                 .FirstOrDefaultAsync(s => s.Id == id && s.User!.Id == GetUserId());
 
             serviceResponse.Data = _mapper.Map<GetShipResponseDto>(dbShip);
