@@ -36,6 +36,15 @@ namespace WarshipsRPGAlpha.Controllers
         {
             return Ok(await _battleService.Battle(request));
         }
+
+
+        [HttpGet("Higscores")]
+        public async Task<ActionResult<ServiceResponse<List<HighScoreDto>>>> Highscores()
+        {
+            return Ok(await _battleService.GetHighscores());
+        }
+
+
     }
 }
  

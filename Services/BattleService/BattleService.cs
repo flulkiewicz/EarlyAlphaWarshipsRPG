@@ -6,11 +6,13 @@ namespace WarshipsRPGAlpha.Services.BattleService
     {
         private readonly DataContext _context;
         private readonly IShipService _shipService;
+        private readonly IMapper _mapper;
 
-        public BattleService(DataContext context, IShipService shipService)
+        public BattleService(DataContext context, IShipService shipService, IMapper mapper)
         {
             _context = context;
             _shipService = shipService;
+            _mapper = mapper;
         }
 
         private static int UseSpecialWaepon(Ship attacker, Ship opponent, SpecialWaepon specialWaepon)
@@ -102,8 +104,8 @@ namespace WarshipsRPGAlpha.Services.BattleService
                             victory = true;
                             attacker.Victories++;
                             opponent.Defeats++;
-                            response.Data.BattleLog.Add($"{opponent.Name} has been sink!");
-                            response.Data.BattleLog.Add($"{attacker.Name} is victorious!");
+                            response.Data.BattleLog.Add($"{opponent.Name} has been sunk!");
+                            response.Data.BattleLog.Add($"{attacker.Name} is victorious! With {attacker.HitPoints} left");
                             break;
                         }
                     }
@@ -216,6 +218,19 @@ namespace WarshipsRPGAlpha.Services.BattleService
             return response;
         }
 
-        
+        public async Task<ServiceResponse<List<HighScoreDto>>> GetHighscores()
+        {
+            var response = new ServiceResponse<List<HighScoreDto>>();
+
+            var ships = await _context.Ships
+                .Where(s => s.Fights > 0)
+                .OrderByDescending(s => s.Victories)
+                .ThenBy(s => s.Defeats)
+                .ToListAsync();
+
+            response.Data = ships.Select(s => _mapper.Map<HighScoreDto>(s)).ToList();
+
+            return response;
+        }
     }
 }

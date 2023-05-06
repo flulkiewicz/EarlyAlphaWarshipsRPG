@@ -12,6 +12,7 @@ namespace WarshipsRPGAlpha
             CreateMap<UpdateShipRequestDto, Ship>();
             CreateMap<MainGun, GetMainGunDto>();
             CreateMap<SpecialWaepon, GetSpecialWaeponDto>();
+            CreateMap<Ship, HighScoreDto>();
         }
     }
 }
