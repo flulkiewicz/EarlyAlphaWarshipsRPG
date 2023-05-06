@@ -16,6 +16,10 @@ namespace WarshipsRPGBeta.Data
                     new SpecialWaepon { Id = 2, Name = "Rocket", Damage = 150 },
                     new SpecialWaepon { Id = 3, Name = "Depth Charge", Damage = 300 }
                 );
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Role)
+                .HasDefaultValue(UserRole.User);
         }
 
         public DbSet<Ship> Ships { get; set; }
