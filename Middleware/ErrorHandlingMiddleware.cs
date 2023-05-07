@@ -20,7 +20,7 @@
                 _logger.LogError(ex, ex.Message);
 
                 context.Response.StatusCode = 500;
-                await context.Response.WriteAsJsonAsync("Your ship crashed captain. Try again later.");
+                await context.Response.WriteAsJsonAsync("Our ship crashed captain. Try again later.");
             }
         }
     }
