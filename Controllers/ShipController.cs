@@ -15,10 +15,12 @@ namespace WarshipsRPGAlpha.Controllers
     public class ShipController : ControllerBase
     {
         private readonly IShipService _shipService;
+        private readonly ILogger<ShipController> _logger;
 
-        public ShipController(IShipService shipService)
+        public ShipController(IShipService shipService, ILogger<ShipController> logger)
         {
             _shipService = shipService;
+            _logger = logger;
         }
 
         [HttpGet("GetAll")]
@@ -48,6 +50,7 @@ namespace WarshipsRPGAlpha.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<ServiceResponse<List<GetShipResponseDto>>>> DeleteShip(int id)
         {
+            _logger.LogWarning($"DELETE ACTION INVOKED: Ship with id:{id}");
             return Ok(await _shipService.DeleteShip(id));
         }
 
