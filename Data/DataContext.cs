@@ -8,8 +8,23 @@ namespace WarshipsRPGBeta.Data
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SpecialWaepon>().HasData(
+                    new SpecialWaepon { Id = 1, Name= "Torpedo", Damage= 250 },
+                    new SpecialWaepon { Id = 2, Name = "Rocket", Damage = 150 },
+                    new SpecialWaepon { Id = 3, Name = "Depth Charge", Damage = 300 }
+                );
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.Role)
+                .HasDefaultValue(UserRole.User);
+        }
+
         public DbSet<Ship> Ships { get; set; }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<MainGun> MainGuns { get; set; }
+        public DbSet<SpecialWaepon> SpecialWaepons { get; set;}
     }
 }

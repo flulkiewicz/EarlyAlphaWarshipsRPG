@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarshipsRPGBeta.Data;
 
@@ -11,9 +12,11 @@ using WarshipsRPGBeta.Data;
 namespace WarshipsRPGAlpha.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230506135122_Roles")]
+    partial class Roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace WarshipsRPGAlpha.Migrations
 
                     b.HasIndex("SpecialWaeponsId");
 
-                    b.ToTable("ShipSpecialWaepon", (string)null);
+                    b.ToTable("ShipSpecialWaepon");
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.MainGun", b =>
@@ -64,7 +67,7 @@ namespace WarshipsRPGAlpha.Migrations
                     b.HasIndex("ShipId")
                         .IsUnique();
 
-                    b.ToTable("MainGuns", (string)null);
+                    b.ToTable("MainGuns");
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.Ship", b =>
@@ -113,7 +116,7 @@ namespace WarshipsRPGAlpha.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Ships", (string)null);
+                    b.ToTable("Ships");
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.SpecialWaepon", b =>
@@ -133,7 +136,7 @@ namespace WarshipsRPGAlpha.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SpecialWaepons", (string)null);
+                    b.ToTable("SpecialWaepons");
 
                     b.HasData(
                         new
@@ -183,7 +186,7 @@ namespace WarshipsRPGAlpha.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ShipSpecialWaepon", b =>

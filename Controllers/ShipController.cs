@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
+using System.Security.Claims;
 using WarshipsRPGAlpha.Dtos.Ship;
+using WarshipsRPGAlpha.Dtos.SpecialWaepon;
 using WarshipsRPGAlpha.Models;
 using WarshipsRPGAlpha.Services.ShipService;
 
@@ -47,6 +49,12 @@ namespace WarshipsRPGAlpha.Controllers
         public async Task<ActionResult<ServiceResponse<List<GetShipResponseDto>>>> DeleteShip(int id)
         {
             return Ok(await _shipService.DeleteShip(id));
+        }
+
+        [HttpPost("SpecialWaepon")]
+        public async Task<ActionResult<ServiceResponse<GetShipResponseDto>>> AddNewSpecialWaepon(AddSpecialWaeponDto newSpecialWaepon)
+        {
+            return Ok(await _shipService.AddSpecialWaepon(newSpecialWaepon));
         }
     }
 }

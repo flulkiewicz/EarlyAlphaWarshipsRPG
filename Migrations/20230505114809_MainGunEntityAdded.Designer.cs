@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WarshipsRPGBeta.Data;
 
@@ -11,9 +12,11 @@ using WarshipsRPGBeta.Data;
 namespace WarshipsRPGAlpha.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230505114809_MainGunEntityAdded")]
+    partial class MainGunEntityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,21 +25,6 @@ namespace WarshipsRPGAlpha.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ShipSpecialWaepon", b =>
-                {
-                    b.Property<int>("ShipsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecialWaeponsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShipsId", "SpecialWaeponsId");
-
-                    b.HasIndex("SpecialWaeponsId");
-
-                    b.ToTable("ShipSpecialWaepon", (string)null);
-                });
-
             modelBuilder.Entity("WarshipsRPGAlpha.Models.MainGun", b =>
                 {
                     b.Property<int>("Id")
@@ -44,9 +32,6 @@ namespace WarshipsRPGAlpha.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -64,7 +49,7 @@ namespace WarshipsRPGAlpha.Migrations
                     b.HasIndex("ShipId")
                         .IsUnique();
 
-                    b.ToTable("MainGuns", (string)null);
+                    b.ToTable("MainGuns");
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.Ship", b =>
@@ -84,13 +69,7 @@ namespace WarshipsRPGAlpha.Migrations
                     b.Property<int>("Crew")
                         .HasColumnType("int");
 
-                    b.Property<int>("Defeats")
-                        .HasColumnType("int");
-
                     b.Property<int>("Faction")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("FirePower")
@@ -106,54 +85,11 @@ namespace WarshipsRPGAlpha.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Victories")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Ships", (string)null);
-                });
-
-            modelBuilder.Entity("WarshipsRPGAlpha.Models.SpecialWaepon", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Damage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SpecialWaepons", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Damage = 250,
-                            Name = "Torpedo"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Damage = 150,
-                            Name = "Rocket"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Damage = 300,
-                            Name = "Depth Charge"
-                        });
+                    b.ToTable("Ships");
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.User", b =>
@@ -172,33 +108,13 @@ namespace WarshipsRPGAlpha.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("Role")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("ShipSpecialWaepon", b =>
-                {
-                    b.HasOne("WarshipsRPGAlpha.Models.Ship", null)
-                        .WithMany()
-                        .HasForeignKey("ShipsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WarshipsRPGAlpha.Models.SpecialWaepon", null)
-                        .WithMany()
-                        .HasForeignKey("SpecialWaeponsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("WarshipsRPGAlpha.Models.MainGun", b =>

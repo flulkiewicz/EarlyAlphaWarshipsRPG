@@ -1,4 +1,7 @@
-﻿namespace WarshipsRPGAlpha
+﻿using WarshipsRPGAlpha.Dtos.MainGun;
+using WarshipsRPGAlpha.Dtos.SpecialWaepon;
+
+namespace WarshipsRPGAlpha
 {
     public class AutoMapperProfile : Profile
     {
@@ -7,6 +10,9 @@
             CreateMap<Ship, GetShipResponseDto>();
             CreateMap<AddShipRequestDto, Ship>();
             CreateMap<UpdateShipRequestDto, Ship>();
+            CreateMap<MainGun, GetMainGunDto>();
+            CreateMap<SpecialWaepon, GetSpecialWaeponDto>();
+            CreateMap<Ship, HighScoreDto>();
         }
     }
 }
