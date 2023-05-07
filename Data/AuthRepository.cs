@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Extensions;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using WarshipsRPGBeta.Data;
@@ -96,7 +97,7 @@ namespace WarshipsRPGAlpha.Data
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Name, user.Role.ToString())
+                new Claim(ClaimTypes.Role, user.Role.GetDisplayName())
             };
 
             var appSettingsToken = _configuration.GetSection("AppSettings:Token").Value;

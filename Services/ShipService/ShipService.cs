@@ -24,6 +24,9 @@ namespace WarshipsRPGAlpha.Services.ShipService
         private int GetUserId() => int.Parse(_httpContextAccessor.HttpContext!.User
             .FindFirstValue(ClaimTypes.NameIdentifier)!);
 
+        private string GetUserRole() => _httpContextAccessor.HttpContext!.User
+            .FindFirstValue(ClaimTypes.Role)!;
+
 
         public async Task<ServiceResponse<List<GetShipResponseDto>>> AddShip(AddShipRequestDto newShip)
         {
@@ -48,10 +51,23 @@ namespace WarshipsRPGAlpha.Services.ShipService
         public async Task<ServiceResponse<List<GetShipResponseDto>>> GetAllShips()
         {
             var serviceResponse = new ServiceResponse<List<GetShipResponseDto>>();
-            var dbShips = await _context.Ships.Where(c => c.User!.Id == GetUserId())
+            List<Ship> dbShips = new List<Ship>();
+
+            if (GetUserRole() != "Admin")
+            {
+                dbShips = await _context.Ships.Where(c => c.User!.Id == GetUserId())
                 .Include(c => c.MainGun)
                 .Include(c => c.SpecialWaepons)
                 .ToListAsync();
+            }
+            else
+            {
+                dbShips = await _context.Ships
+                .Include(c => c.MainGun)
+                .Include(c => c.SpecialWaepons)
+                .ToListAsync();
+            };
+            
             serviceResponse.Data = dbShips.Select(s => _mapper.Map<GetShipResponseDto>(s)).ToList();
 
             return serviceResponse;

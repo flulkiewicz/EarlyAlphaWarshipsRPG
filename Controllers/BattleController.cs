@@ -5,7 +5,7 @@ using WarshipsRPGAlpha.Services.BattleService;
 
 namespace WarshipsRPGAlpha.Controllers
 {
-    [Authorize(Roles = "2")]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class BattleController : ControllerBase

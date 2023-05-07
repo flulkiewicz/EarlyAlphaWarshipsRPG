@@ -21,6 +21,7 @@ namespace WarshipsRPGAlpha.Controllers
             _shipService = shipService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("GetAll")]
         public async Task<ActionResult<ServiceResponse<List<GetShipResponseDto>>>> Get()
         {
